@@ -46,6 +46,7 @@
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
+
   class Product{
     constructor(id, data){
       const thisProduct = this;
@@ -58,8 +59,7 @@
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
 
-
-      /* console.log('new Product:', thisProduct); */
+    /* console.log('new Product:', thisProduct); */
     }
 
     renderInMenu(){
@@ -111,8 +111,6 @@
         thisProduct.processOrder();
       });
     }
-
-
 
     initOrderForm(){
       const thisProduct = this;
@@ -244,8 +242,6 @@
         thisWidget.setValue ((thisWidget.value += 1));
       });
     }
-
-
   }
 
   const app = {
