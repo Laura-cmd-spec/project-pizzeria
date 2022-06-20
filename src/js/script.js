@@ -68,8 +68,8 @@
   const settings = {
     amountWidget: {
       defaultValue: 1,
-      defaultMin: 1,
-      defaultMax: 9,
+      defaultMin: 0,
+      defaultMax: 10,
     }, // CODE CHANGED
     // CODE ADDED START
     cart: {
@@ -223,6 +223,7 @@
       const thisProduct = this;
       app.cart.add(thisProduct.prepareCartProduct());
     }
+
     prepareCartProduct() {
       const thisProduct = this;
       const productSummary = {
@@ -278,6 +279,7 @@
       thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initActions();
     }
+
     getElements(element) {
       const thisWidget = this;
 
@@ -306,6 +308,7 @@
       thisWidget.input.value = thisWidget.value;
       thisWidget.announce();
     }
+    
     initActions(){
       const thisWidget = this;
       thisWidget.input.addEventListener('change', function() {
