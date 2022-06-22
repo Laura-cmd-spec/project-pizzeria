@@ -97,6 +97,7 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
+      thisProduct.prepareCartProductParams();
 
       /* console.log('new Product:', thisProduct); */
     }
@@ -142,6 +143,7 @@
       });
 
     }
+
 
     initAmountWidget() {
       const thisProduct = this;
@@ -198,11 +200,11 @@
             }
           }
           else if (option.deafult == true) {
-            price = option.price;
+            price -= option.price;
           }
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           if (optionImage) {
-            if (optionSelected) {
+            if (formData[paramId] && formData[paramId].includes(optionId)) {
               optionImage.classList.add(classNames.menuProduct.imageVisible);
             } else {
               optionImage.classList.remove(classNames.menuProduct.imageVisible);
@@ -274,9 +276,9 @@
       console.log('AmountWidget: ', thisWidget);
       console.log('constructor arguments: ', element);
 
-
       thisWidget.getElements(element);
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.setValue(
+        thisWidget.input.value || settings.amountWidget.defaultValue);
       thisWidget.initActions();
     }
 
@@ -287,40 +289,44 @@
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
-      
+
     }
 
     announce() {
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
 
-    setValue(value){
+    setValue(value) {
       const thisWidget = this;
       const newValue = parseInt(value);
       const maxValue = settings.amountWidget.defaultMax;
       const minValue = settings.amountWidget.defaultMin;
-      if((thisWidget.value !== newValue && !isNaN(newValue)) && newValue >= minValue && newValue <= maxValue){
+      if (thisWidget.value !== newValue && !isNaN(newValue) && newValue >= minValue && newValue <= maxValue) {
         thisWidget.value = newValue;
       }
       thisWidget.input.value = thisWidget.value;
       thisWidget.announce();
     }
-    
-    initActions(){
+
+
+
+    initActions() {
       const thisWidget = this;
-      thisWidget.input.addEventListener('change', function() {
+      thisWidget.input.addEventListener('change', function () {
         thisWidget.setValue(thisWidget.input.value);
       });
-      thisWidget.linkDecrease.addEventListener('click', function(event){
+      thisWidget.linkDecrease.addEventListener('click', function (event) {
         event.preventDefault();
-        thisWidget.setValue ((thisWidget.value -1));
+        thisWidget.setValue((thisWidget.value - 1));
       });
-      thisWidget.linkIncrease.addEventListener('click', function(event){
+      thisWidget.linkIncrease.addEventListener('click', function (event) {
         event.preventDefault();
-        thisWidget.setValue ((thisWidget.value +1));
+        thisWidget.setValue((thisWidget.value + 1));
       });
     }
   }
@@ -352,8 +358,12 @@
 
     initActions() {
       const thisCart = this;
+
       thisCart.dom.toggleTrigger.addEventListener('click', function () {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
+      thisCart.dom.productList.addEventListener('updated', function() {
+        thisCart.update();
       });
     }
     add(menuProduct) {
@@ -366,7 +376,6 @@
 
       /* add element to cart */
       thisCart.dom.productList.appendChild(generatedDOM);
-
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       thisCart.update();
@@ -426,6 +435,7 @@
 
     getElements(element) {
       const thisCartProduct = this;
+
 
       thisCartProduct.dom = {
         amountWidget: element.querySelector(select.cartProduct.amountWidget),
