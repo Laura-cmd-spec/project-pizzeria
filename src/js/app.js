@@ -119,7 +119,6 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse) {
-        console.log('parsedResponse : ', parsedResponse);
 
         thisApp.data.products = parsedResponse;
 
@@ -137,7 +136,7 @@ const app = {
 
     // eslint-disable-next-line no-unused-vars
     const booking = new Booking(thisApp.bookingContainer);
-    console.log('initbooking');
+  
   },
 
   init: function(){

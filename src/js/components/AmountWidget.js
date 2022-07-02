@@ -1,4 +1,4 @@
-import {select, settings} from '../settings.js';
+import { settings, select } from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget {
@@ -6,17 +6,18 @@ class AmountWidget extends BaseWidget {
     super(element,settings.amountWidget.defaultValue);
     const thisWidget = this;
 
-    //console.log('AmountWidget: ', thisWidget);
-    //console.log('constructor arguments: ', element);
+    // console.log('AmountWidget : ', thisWidget);
+    // console.log('constructor arguments : ', element);
 
     thisWidget.getElements(element);
-    //thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
+    // thisWidget.setValue(settings.amountWidget.defaultValue);
     thisWidget.initActions();
   }
 
-  getElements(element) {
+  getElements(){
     const thisWidget = this;
 
+    // thisWidget.dom.wrapper = element;
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
@@ -52,7 +53,3 @@ class AmountWidget extends BaseWidget {
 }
 
 export default AmountWidget;
-
-
-
-  
