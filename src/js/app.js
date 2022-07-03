@@ -2,6 +2,7 @@ import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Home from './components/Home.js';
 
 const app = {
 
@@ -139,6 +140,16 @@ const app = {
   
   },
 
+  initHome: function () {
+
+    const thisApp = this;
+    thisApp.homeWidget = document.querySelector(select.containerOf.home);
+    // eslint-disable-next-line no-unused-vars
+
+    // eslint-disable-next-line no-unused-vars
+    const home = new Home(thisApp.homeWidget);
+  },
+
   init: function(){
     const thisApp = this;
     // console.log('*** App starting ***');
@@ -157,6 +168,7 @@ const app = {
 
     thisApp.initBooking();
 
+    thisApp.initHome();
 
 
   },
