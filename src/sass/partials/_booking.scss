@@ -44,6 +44,7 @@
 .time-picker {
   @include flex(row, flex-start, space-between);
   margin: 0 0 ($base-size * 4) 0;
+  color: red;
 }
   
 .hour-picker {
@@ -62,6 +63,7 @@
   background: lighten($color-dark, 70%);
   box-shadow: none;
   height: $base-size;
+  color: red;
   
   &__handle {
     box-shadow: none;
@@ -92,7 +94,7 @@
   
 .flatpickr-day {
   &.disabled {
-    color: lighten($color-dark, 60%);
+    color: red ($color-dark, 60%);
   }
 }
   
