@@ -1,9 +1,9 @@
 {
-    "name": "fer-07-project",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.html",
-    "scripts": {
+  "name": "fer-07-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
       "init-project": "npm install && npm-run-all init:*",
       "init:dirs": "mkdirp dist src/sass src/css src/vendor src/images src/js",
       "init:files": "touch README.md src/index.html src/sass/style.scss src/js/script.js",
@@ -12,6 +12,7 @@
       "test": "npm-run-all test:*",
       "test:html": "html-validate src/*.html",
       "test:js": "eslint src/js/",
+      "test:scss": "stylelint src/sass/",
       "build": "npm-run-all build:* test",
       "build:clean": "rimraf dist && mkdirp dist",
       "build:copy": "copyfiles -a -u 1 -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" dist",
@@ -24,11 +25,11 @@
       "watch:browsersync": "browser-sync start --server dist --files \"dist/**/*\" --ignore \"dist/db/**/*\"",
       "watch:sassprefixer": "onchange \"src/sass/**/*.scss\" -- npm run build-dev",
       "watch:copy": "onchange -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" -- copyfiles -a -u 1 {{changed}} dist"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
       "autoprefixer": "^10.2.4",
       "browser-sync": "^2.26.3",
       "copyfiles": "^2.1.0",
@@ -42,11 +43,11 @@
       "postcss-cli": "^8.3.1",
       "rimraf": "^3.0.2",
       "sass": "^1.44.0",
-      "stylelint": "^13.0.0",
+      "stylelint": "^9.10.1",
       "stylelint-scss": "^3.5.4"
-    },
-    "dependencies": {
+  },
+  "dependencies": {
       "flickity": "^3.0.0",
       "json-server": "^0.17.0"
-    }
   }
+}
