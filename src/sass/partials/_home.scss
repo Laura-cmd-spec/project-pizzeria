@@ -1,6 +1,5 @@
 .header-template {
-  margin-inline-end: ($base-size / 2) 0;
-  // padding: ($base-size * 6) ($base-size * 4);
+  margin-inline-end: ($base-size * 2) 0;
   background: $color-light;
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
@@ -20,7 +19,6 @@
     background-position: center;
     width: 324px;
     height: 130px;
-    // object-fit: cover;
     transition-duration: 0.5s;
     border-radius: 5px;
   
@@ -104,8 +102,7 @@
   
 .carousel{
   
-  margin: ($base-size / 2) 0;
-  // padding: ($base-size * 6) ($base-size * 4);
+  margin: ($base-size * 2) 0;
   background: $color-light;
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
@@ -160,8 +157,7 @@
   
 .sectiongallery1 {
   padding-top: 50px;
-  margin: ($base-size / 2) 0;
-  // padding: ($base-size * 6) ($base-size * 4);
+  margin: ($base-size * 2) 0;
   background: $color-light;
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
@@ -310,8 +306,7 @@
   
 .sectiongallery2 {
   
-  margin: ($base-size / 2) 0;
-  // padding: ($base-size * 6) ($base-size * 4);
+  margin: ($base-size * 2) 0;
   background: $color-light;
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
